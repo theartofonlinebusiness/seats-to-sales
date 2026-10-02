@@ -80,7 +80,7 @@
 
 <div class="wrap">
   <header>
-    <p class="kick">Seats to Sales &middot; Day-by-Day Webinar Ads Tool</p>
+    <p class="kick">Webinar Ad Playbook &middot; Day-by-Day Webinar Ads Tool</p>
     <h1>Open the day you're on. Do what it says.</h1>
     <p>Pick a free or a paid webinar first, because they play by different rules. Then open the day of your launch and follow the if/then rules.</p>
   </header>
@@ -130,7 +130,7 @@
     <p><b>Control ad.</b> Your best ad right now. It stays on, untouched, until a new ad beats it for 2 to 3 days.</p>
     <p><b>Warm audiences.</b> Your email list, customer list, website visitors (180 days), leads (180 days), Instagram followers, Facebook followers and video viewers (ThruPlay, 180 days).</p>
   </div>
-  <footer>Seats to Sales &middot; The Art of Online Business. Results depend on your webinar, your offer and your audience. Nothing here guarantees a cost per registrant or a return.</footer>
+  <footer>Webinar Ad Playbook &middot; The Art of Online Business. Results depend on your webinar, your offer and your audience. Nothing here guarantees a cost per registrant or a return.</footer>
 </div>
 
 <script>
@@ -245,15 +245,15 @@
     if(perDay<14||coldFit<1){
       name='One warm ad set'; w=bud; c=0; warmPct=100; coldPct=0;
       desc=perDay<7?'Your budget buys fewer than 7 registrants a day. Run one Advantage+ ad set with all your warm audiences, and give it 3 weeks instead of 2.':'Run one Advantage+ ad set with all your warm audiences stacked together. Your budget can\u2019t carry a cold ad set of its own yet.';
-    } else if(bud>=1000&&coldFit>=6){
+    } else if(bud>=1000&&coldFit>=3){
       coldSets=3; name='Three copy ad sets';
-      desc='A very big budget. Point 3 cold ad sets at your best lookalike, one piece of ad copy each with up to 6 visuals, plus your warm ad set. Once winners hold for 3 days, move their post IDs into a separate scaling campaign where Meta splits the budget.';
+      desc='A very big budget. Pick your one best cold lookalike and run it as 3 Advantage+ ad sets, one piece of ad copy in each with up to 6 visuals, plus your warm ad set. Once winners hold for 3 days, move their post IDs into a separate scaling campaign where Meta splits the budget.';
     } else if(coldFit===1){
       coldSets=1; name='Warm plus one cold';
-      desc='One ad set with your warm audiences, and one cold ad set with your best lookalike. Exclude your warm audiences from the cold ad set.';
+      desc='One Advantage+ ad set with your warm audiences, and one cold Advantage+ ad set with your best lookalike as the audience suggestion. Exclude your warm audiences from the cold ad set.';
     } else {
-      coldSets=Math.min(3,coldFit); name='Warm plus '+coldSets+' cold audiences';
-      desc='One warm ad set, plus '+coldSets+' cold lookalike ad sets with the same visuals and copy in each. Never more than 3 cold audiences at once.';
+      coldSets=Math.min(2,coldFit); name='Warm plus '+coldSets+' cold audiences';
+      desc='One warm ad set, plus '+coldSets+' cold Advantage+ ad sets, each with a lookalike as the audience suggestion and the same visuals and copy in each. Exclude your warm audiences from both. If you\u2019re close to the line, stay at one cold ad set. More registrants per ad set beats more ad sets.';
     }
     var perCold=coldSets?c/coldSets:0;
     var adsW=Math.max(1,Math.min(6,Math.floor(w/10))), adsC=coldSets?Math.max(1,Math.min(6,Math.floor(perCold/10))):0;
@@ -266,7 +266,7 @@
     h+='<div class="l"><span>Ads in each cold ad set</span><b>up to '+adsC+'</b></div>';}
     h+='</div>';
     if(coldSets&&name.indexOf('Three')<0){h+='<p style="margin:14px 0 0;font-weight:700;color:var(--navy);font-size:14px">Test cold audiences in this order</p><ol class="order">'+order.map(function(o){return '<li>'+o+'</li>'}).join('')+'</ol>';}
-    h+='<p style="margin:12px 0 0;font-size:14px;color:var(--ink-soft)">Watch cost per registrant by audience every day and move money to the cheaper side. A list that has not been nurtured can cost more than a cold audience.</p>';
+    h+='<p style="margin:12px 0 0;font-size:14px;color:var(--ink-soft)">Watch cost per registrant by audience every day and move money to the cheaper side. A list that has not been nurtured can cost more than a cold audience. If warm cost per registrant climbs too high, turn warm off and stay with cold.</p>';
     
     $('result').innerHTML=h;
   }
