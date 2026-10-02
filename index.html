@@ -40,7 +40,7 @@
   .pill{justify-self:start;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap;margin-top:2px}
   .p-if{background:#fcebeb;color:#a32d2d}.p-then{background:#eaf3de;color:#3b6d11}.p-wait{background:var(--wait-bg);color:var(--wait-tx)}
   .p-off{background:var(--off-bg);color:var(--off-tx)}.p-keep{background:var(--keep-bg);color:var(--keep-tx)}.p-grow{background:var(--grow-bg);color:var(--grow-tx)}
-  .p-note{background:var(--note-bg);color:var(--note-tx)}.p-cart{background:var(--cart-bg);color:var(--cart-tx)}.p-stop{background:#f7c1c1;color:#791f1f}
+  .p-note{background:var(--note-bg);color:var(--note-tx)}.p-next{background:var(--navy);color:#fff}.p-cart{background:var(--cart-bg);color:var(--cart-tx)}.p-stop{background:#f7c1c1;color:#791f1f}
   .row p{margin:0;font-size:15px}
   .row p b{color:var(--navy)}
   .row ul{margin:6px 0 0;padding-left:18px;font-size:14.5px;color:var(--ink-soft)}
@@ -82,7 +82,7 @@
   <header>
     <p class="kick">Webinar Ad Playbook &middot; Day-by-Day Webinar Ads Tool</p>
     <h1>Open the day you're on. Do what it says.</h1>
-    <p>Pick a free or a paid webinar first, because they play by different rules. Then open the day of your launch and follow the if/then rules.</p>
+    <p>Pick a free or a paid webinar first, because they play by different rules. Then open the day you're on and follow it from top to bottom.</p>
   </header>
 
   <div class="modebar">
@@ -94,6 +94,7 @@
   </div>
   <div class="tabs" role="tablist" id="tabs"></div>
   <div class="card panel" id="panel" role="tabpanel"></div>
+  <p class="sub" style="margin:12px 0 0;font-size:14px">Days 4, 6, 7, 9, 10, 12 and 13 aren't missing. They're wait days. Leave the ads alone and come back on the next day listed. Day 1 is the day your ads go live, and you check in the morning.</p>
 
   <h2>Pick your registration setup</h2>
   <p class="sub">Your budget decides how many ad sets you can run. Each ad set needs about 7 registrants a day (about 50 a week) for Meta to learn, and each ad needs about $10 a day, with no more than 6 ads in one ad set.</p>
@@ -137,87 +138,173 @@
 (function(){
   var $=function(id){return document.getElementById(id)};
   var R=function(p,label,text){return {p:p,l:label,t:text}};
+  var N=function(t){return R('p-next','Next',t)};
   var D={
     free:{hint:'Lead objective, lead event. Judge ads on cost per registrant.',days:[
-      {t:'Before launch',c:'<b>Two weeks out is the default.</b> Go to three weeks if the webinar is new and unproven, or if your email list is under about 1,500 and your warm audiences are small.',r:[
-        R('p-then','Check','Pixel on the registration page, Conversions API connected, and the lead event firing on the thank-you page. Opt in yourself to check.'),
-        R('p-then','Build','Your 7 warm audiences, plus a lookalike of your customer list (or your whole email list if you have fewer than 1,000 buyers).'),
-        R('p-then','Create','5 graphics in 2 sizes (1080 x 1350 and 1080 x 1920), 3 pieces of ad copy and 5 headlines.'),
-        R('p-then','Set','Lead objective with the lead event. Countries where your buyers live, usually the US, Canada, the UK, Australia and New Zealand.'),
-        R('p-off','Off','Text improvements, show spotlights, reveal details over time and site links. Music is untested, so it is your call.'),
-        R('p-wait','Schedule','Go live early on a Monday, never on a weekend.')]},
-      {t:'Day 1',c:'The algorithm is just starting. Your only job is to stay out of the way.',r:[
-        R('p-if','If','Ads are live and impressions are coming in.'),R('p-then','Then','Change nothing.'),
-        R('p-if','If','An ad was rejected.'),R('p-then','Then','Fix it and republish. That is the only reason to touch anything today.')]},
-      {t:'Day 3',c:'Your first real read. You are looking for outliers, not picking winners.',r:[
-        R('p-if','If','An ad is spending with no registrants, or costs far more per registrant than the others.'),R('p-off','Turn off','Give its budget to the rest.'),
-        R('p-if','If','An ad had one pricey day.'),R('p-keep','Keep','One day is not a trend.')]},
-      {t:'Day 4 to 10',c:'Find your <b>trend friend</b>. Look at today, yesterday and the two days before for each ad.',r:[
-        R('p-if','If','Getting cheaper, or holding steady under your ceiling.'),R('p-grow','Scale','Raise that ad set 15 to 20% a day.'),
-        R('p-if','If','Getting more expensive 3 to 4 days running and over your ceiling.'),R('p-off','Turn off',''),
-        R('p-if','If','Budget keeps bouncing between two ads.'),R('p-then','Then','Check link click-through rate (1% or better) and reach (500+ people) before you decide.'),
-        R('p-note','Test order','Visuals first with the same copy and headline. Then the winning visual with your other 2 copy versions. Then headlines. Then new audiences.')]},
-      {t:'Weekend',c:'People behave differently on weekends, and a brand new ad set has nothing to learn from.',r:[
-        R('p-wait','Wait','Nothing new or unproven goes live from Thursday afternoon through Sunday. It waits for Monday.'),
-        R('p-keep','Keep','Carry your proven ads through the weekend.'),
-        R('p-if','If','It is a high-stakes launch and costs spike on Saturday.'),R('p-then','Then','Narrow to your single best ad until Monday.')]},
-      {t:'Last 3 days',c:'Registrants often get more expensive as the webinar gets close. Some accounts see a big jump, some see none.',r:[
-        R('p-if','If','Cost per registrant passes your ceiling.'),R('p-then','Then','Cut down to only your best ads, or turn registration ads off early.'),
-        R('p-off','Default','Registration ads go off the morning of the webinar.'),
-        R('p-note','Next launch','If your costs spiked at the end, put more of the budget into the first week.')]},
-      {t:'Cart open',c:'Hold back <b>5 to 10%</b> of the launch budget for this. Keep the cart open 4 days or less.',r:[
-        R('p-then','Before','Upload a fresh export of your whole email list, with the new registrants inside it.'),
-        R('p-cart','Go live','One hour after the webinar starts. A 1pm Eastern webinar gets cart ads at 2pm Eastern.'),
-        R('p-then','Target','All warm audiences stacked in one ad set. Exclude buyers. Sales objective, purchase event.'),
-        R('p-if','If','Small budget (around $200 a day) or a short cart.'),R('p-then','Then','One ad with all your copy, headlines and visuals loaded as options. Let Meta sort them.'),
-        R('p-if','If','Big budget.'),R('p-then','Then','Three ad sets, one per piece of ad copy, with all your visuals in each.'),
-        R('p-off','Turn off','An ad that has spent more than the program price with no sale, or one selling at several times the cost of your best ad with 500+ reach. On a $4,000 program, keep both if both are clearly profitable.')]},
-      {t:'Cart close',c:'Cart close ads start <b>2 days before the doors close</b>.',r:[
-        R('p-keep','Keep','Your best cart open ads keep running beside them until the cart close ads beat them.'),
-        R('p-stop','Never','Run cart close ads for less than 24 hours. That forces a lifetime budget and gives Meta no time to settle.')]},
-      {t:'Replay',c:'The replay page is a sales page with a video on top.',r:[
-        R('p-then','Set','Traffic objective. Everyone who registered, whether they attended or not.'),
-        R('p-then','Send to','A replay page with a Buy Now button right under the video, going to your sales page.'),
-        R('p-off','Turn off','When the cart closes.')]}
+      {t:'Before launch',c:"<b>Two weeks out is the default.</b> Go to three weeks if the webinar is new and unproven, or if your email list is under about 1,500 and your warm audiences are small.",r:[
+        R('p-then','Know',"Your ceiling, which is half of what each registrant earned you on your last launch. Every keep or turn off decision in this tool compares an ad to that number."),
+        R('p-then','Check',"Pixel on the registration page, Conversions API connected, and the lead event firing on the thank-you page. Opt in yourself to check."),
+        R('p-then','Build',"Your 7 warm audiences, plus a lookalike of your customer list (or your whole email list if you have fewer than 1,000 buyers)."),
+        R('p-then','Create',"5 graphics in 2 sizes (1080 x 1350 and 1080 x 1920), 3 pieces of ad copy and 5 headlines."),
+        R('p-then','Set',"Lead objective with the lead event. Countries where your buyers live, usually the US, Canada, the UK, Australia and New Zealand."),
+        R('p-then','Load',"Your graphics with the same ad copy and the same headline on every ad, so the only thing changing is the picture. About $10 a day per ad, and no more than 6 ads in one ad set. The setup picker below gives you the count."),
+        R('p-off','Off',"Text improvements, show spotlights, reveal details over time and site links. Music is untested, so it's your call."),
+        R('p-then','Build now',"Your cart open and cart close ads. Build and schedule them before registration starts, so you aren't doing it on webinar day."),
+        R('p-wait','Schedule',"Go live early on a Monday, never on a weekend."),
+        N("Day 1, the day your ads go live.")]},
+      {t:'Day 1',c:"The day your ads go live. The algorithm is just starting. Your only job is to stay out of the way.",r:[
+        R('p-if','If',"Ads are live and impressions are coming in."),R('p-then','Then',"Change nothing. Don't touch budget, copy, graphics or audiences."),
+        R('p-if','If',"An ad was rejected."),R('p-then','Then',"Fix it and republish. That's the only reason to touch anything today."),
+        R('p-note','Note',"Don't panic about a high cost per registrant today. One day isn't enough to decide anything, and the cost usually comes down by day 2 or 3."),
+        N("Day 2. A quick health check, no decisions.")]},
+      {t:'Day 2',c:"The morning after one full day of spend. This is a health check. You're looking at whether the ads are running, not which one is winning.",r:[
+        R('p-if','If',"Every ad is delivering and registrants are coming in."),R('p-then','Then',"Do nothing. Close Ads Manager."),
+        R('p-if','If',"An ad has zero impressions, or it's still in review."),R('p-then','Then',"Look for a rejection or a scheduling mistake. That's a delivery problem to fix, not a result to judge."),
+        R('p-if','If',"Registrants show in your email platform but not in Ads Manager."),R('p-then','Then',"Your tracking is off. Fix that today, because Meta can't learn from registrants it can't see."),
+        R('p-stop','Do not',"Compare ads or turn anything off. One day of data can't tell you which graphic wins."),
+        N("Day 3. Outliers only.")]},
+      {t:'Day 3',c:"The morning after two full days of spend. Your first real read. You're looking for outliers, not picking winners. Plenty of launches have no outlier at all.",r:[
+        R('p-if','If',"One ad costs many times more per registrant than the others, like $50 while the rest sit near $8."),R('p-off','Turn off',"Turn that ad off. It's had two full days and it's taking money from the ads that work."),
+        R('p-if','If',"An ad is getting a lot of the spend and has zero registrants."),R('p-off','Turn off',"Turn that one off too."),
+        R('p-if','If',"An ad had one pricey day."),R('p-keep','Keep',"Leave it on. One day isn't a trend."),
+        R('p-if','If',"There are no outliers."),R('p-then','Then',"Leave every ad running. That's normal, so don't turn one off just to feel busy."),
+        R('p-then','First',"Before you turn an ad off, read its comments. Sometimes answering a question is all it needs."),
+        R('p-stop','Do not',"Add new ads or change the budget today. You aren't picking a winner yet."),
+        N("Day 5. Day 4 is a wait day, so leave the ads alone.")]},
+      {t:'Day 5',c:"The morning after four full days. Now you can meet your <b>trend friend</b>. For each ad, look at today, then yesterday, then the two days before as one range. Pick your winning graphics and bring in your first new ads.",r:[
+        R('p-if','If',"One or two graphics clearly have the lowest cost per registrant."),R('p-keep','Keep',"Those are your winners. Leave them running exactly as they are and turn off the losing graphics."),
+        R('p-if','If',"Two graphics are too close to call on cost per registrant."),R('p-then','Then',"Compare link click-through rate. Above 1% is good and above 1.25% is great. The higher one wins. Still close? Keep both."),
+        R('p-then','Add',"Duplicate a winning ad and change one thing, your second piece of ad copy. Do it again with your third. Name each new ad so you can tell later what you changed."),
+        R('p-stop','Never',"Turn off the winner when you add new ads, and never leave an ad set with zero ads running. Both make Meta start learning again and your cost goes up."),
+        R('p-note','Count',"Don't go past the number of ads you started with. Keep the winner, turn off the losers, add two new ones. Every ad still needs about $10 a day."),
+        R('p-if','If',"The trend is getting cheaper."),R('p-wait','Wait',"Don't change anything on that ad. Let it keep going."),
+        R('p-if','If',"The trend is steady and under your ceiling."),R('p-grow','Scale',"You can raise that ad set 15% a day, or 20% every other day. Pick one, not both."),
+        R('p-if','If',"The trend is getting more expensive and it's over your ceiling."),R('p-off','Turn off',"Turn off that ad, as long as another ad in the ad set is still running."),
+        R('p-if','If',"An ad gets clicks but few registrants."),R('p-then','Then',"The problem is usually the registration page, not the ad."),
+        R('p-if','If',"An ad's link click-through rate is under 1%."),R('p-then','Then',"It needs a new first line before anything else."),
+        N("Day 8. Three full days on your new ads. If day 6 or 7 lands on a weekend, open the Weekend tab.")]},
+      {t:'Day 8',c:"Three full days after your day 5 changes, and the start of your second week. From here you slow down. You're refining ads that already work.",r:[
+        R('p-then','Pick',"Same order as day 5. Lowest cost per registrant first. Too close to call, the higher link click-through rate. Still close, keep both."),
+        R('p-keep','Keep',"Every ad that's steady and under your ceiling. Turn off the clear loser."),
+        R('p-then','Add',"One new ad, not three. Duplicate your best ad and change only the headline, or bring in a graphic you haven't tested. This is the last round of new ads for a two-week launch."),
+        R('p-if','If',"A winner has held steady or gotten cheaper for 3 to 4 days."),R('p-grow','Scale',"Raise that ad set 15% a day, or 20% every other day. Need a bigger jump? Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"People are seeing the same ad too often. Bring in a new graphic."),
+        R('p-if','If',"One side, warm or cold, is clearly cheaper per registrant."),R('p-then','Then',"Move money to the cheaper side. If warm cost per registrant climbs too high, turn warm off and stay with cold."),
+        R('p-if','If',"Your budget can carry another cold ad set (check the setup picker below)."),R('p-then','Then',"Add the next audience in the test order, with your winning ads in it. Monday to Wednesday only."),
+        R('p-stop','Stop point',"If no graphic and no ad copy got you under your ceiling, a new headline won't fix it. That's a message or an audience problem. Narrow to your best ad and save the rest of the budget for the cart."),
+        N("Day 11. Three more full days, then you lock things in.")]},
+      {t:'Day 11',c:"Your webinar is about three days away. Today you lock in what's working. A new ad started now won't get enough days to prove itself.",r:[
+        R('p-if','If',"You have 2 or 3 ads at or under your ceiling."),R('p-keep','Keep',"You're done testing. Leave them running together and let Meta move between them."),
+        R('p-if','If',"The headline test from day 8 has the lower cost per registrant."),R('p-keep','Keep',"Keep it and turn off your weakest ad. If it lost, turn it off and go back to what you had."),
+        R('p-if','If',"A winning ad has gotten more expensive two days in a row and it's over your ceiling."),R('p-off','Turn off',"Turn off that one ad and let your next best ad carry the spend. One at a time, so the ad set keeps running."),
+        R('p-stop','Do not',"Add new ads, new ad sets or big budget jumps from here."),
+        R('p-then','Check',"Your cart open and cart close ads are built, approved and scheduled, and the buyers audience is set up to exclude."),
+        R('p-note','3 weeks?',"If you're running three weeks of ads, use the Day 8 tab again on days 11 and 14, then use this tab on day 18."),
+        N("The Last 3 days tab.")]},
+      {t:'Weekend',c:"People behave differently on weekends, and a brand new ad set has nothing to learn from.",r:[
+        R('p-then','Thursday',"Make Friday's decisions today. If an ad looks shaky going into the weekend, it usually gets worse."),
+        R('p-wait','Wait',"Nothing new or unproven goes live from Thursday afternoon through Sunday. That's new ads, new ad sets and big budget changes. They wait for Monday."),
+        R('p-keep','Keep',"Carry your proven ads through the weekend."),
+        R('p-off','Turn off',"The shaky ones. Bring in their replacements on Monday."),
+        R('p-if','If',"It's a high-stakes launch and costs spike on Saturday."),R('p-then','Then',"Narrow to your single best ad until Monday."),
+        R('p-note','Note',"If a check-in day lands on a Saturday or Sunday, you can still turn off an outlier. Anything you'd add waits for Monday.")]},
+      {t:'Last 3 days',c:"Registrants often get more expensive as the webinar gets close. Some accounts see a big jump, some see none.",r:[
+        R('p-if','If',"Cost per registrant is steady and under your ceiling."),R('p-keep','Keep',"Leave everything on until the morning of the webinar."),
+        R('p-if','If',"Cost per registrant passes your ceiling."),R('p-then','Then',"Cut down to only your best ads, or turn registration ads off early and move that money to the cart."),
+        R('p-then','Day before',"Export your whole email list, with the new registrants inside it, and upload it for your cart ads."),
+        R('p-off','Default',"Registration ads go off the morning of the webinar."),
+        R('p-note','Next launch',"If your costs spiked at the end, put more of the budget into the first week next time."),
+        N("The Cart open tab, on webinar day.")]},
+      {t:'Cart open',c:"Hold back <b>5 to 10%</b> of the launch budget for this. Keep the cart open 4 days or less. A pricier program can go a little longer.",r:[
+        R('p-then','Before',"Upload a fresh export of your whole email list, with the new registrants inside it."),
+        R('p-cart','Go live',"One hour after the webinar starts. A 1pm Eastern webinar gets cart ads at 2pm Eastern."),
+        R('p-then','Target',"All warm audiences stacked in one ad set, with further limit the reach turned on. Exclude buyers. Sales objective, purchase event."),
+        R('p-then','Write',"Pull the ads from your sales emails. Reminder, objection, deadline, testimonial. Deadline ads usually win."),
+        R('p-if','If',"Small budget (around $200 a day) or a short cart."),R('p-then','Then',"One ad with all your copy, headlines and visuals loaded as options. Let Meta sort them. Stick to your email list and registrants and skip social followers."),
+        R('p-if','If',"Big budget."),R('p-then','Then',"Three ad sets, one per piece of ad copy, with all your visuals in each."),
+        R('p-wait','Wait',"For 500 people reached before you trust what an ad is doing."),
+        R('p-off','Turn off',"An ad that has spent more than the program price with no sale, or one selling at several times the cost of your best ad with 500+ reach. On a $4,000 program, keep both if both are clearly profitable."),
+        R('p-grow','Scale',"If cart ads are selling well, they can have more than the 5 to 10% you held back."),
+        N("The Cart close tab, 2 days before the doors close.")]},
+      {t:'Cart close',c:"Cart close ads start <b>2 days before the doors close</b>.",r:[
+        R('p-then','Copy',"Say the deadline plainly, with the day and the time."),
+        R('p-keep','Keep',"Your best cart open ads keep running beside them until the cart close ads beat them."),
+        R('p-stop','Never',"Run cart close ads for less than 24 hours. That forces a lifetime budget and gives Meta no time to settle."),
+        R('p-off','Turn off',"Every launch ad, the moment the cart closes."),
+        N("Your launch debrief, within a week, while you still remember what happened.")]},
+      {t:'Replay',c:"Most registrants didn't show up live. The replay page is a sales page with a video on top.",r:[
+        R('p-then','Set',"Traffic objective. Everyone who registered, whether they attended or not."),
+        R('p-then','Send to',"A replay page with a Buy Now button right under the video, going to your sales page."),
+        R('p-then','Run',"From the day after the webinar until the cart closes."),
+        R('p-if','If',"The replays aren't turning into sales."),R('p-then','Then',"Stop the replay ads and put that money into your cart open ads."),
+        R('p-off','Turn off',"When the cart closes.")]}
     ]},
     paid:{hint:'Sales objective, purchase event. Your ticket price sets the rules.',days:[
-      {t:'Before launch',c:'Two to three weeks of registration ads. People pay before they attend, so an earlier start costs you less than it would on a free webinar.',r:[
-        R('p-then','Check','Purchase event firing on the checkout, and order bump and upsell value counted in the same purchase.'),
-        R('p-then','Set','Sales objective, purchase event. Budget at the ad set level, at or above the daily floor for your ticket price.'),
-        R('p-then','Know','The most you can pay per ticket and still profit once the program sales come in. On a paid launch, the first purchase rarely covers the ads.'),
-        R('p-wait','Schedule','Go live early on a Monday, never on a weekend.')]},
-      {t:'Day 1',c:'No sales on day 1 is normal.',r:[
-        R('p-if','If','Ads are live with no errors.'),R('p-then','Then','Change nothing.'),
-        R('p-if','If','An ad was rejected.'),R('p-then','Then','Fix it and republish.')]},
-      {t:'Day 2',c:'One full day of spend. Compare each ad to your <b>ticket price</b>.',r:[
-        R('p-if','If','Spent more than the ticket price with zero purchases.'),R('p-off','Turn off',''),
-        R('p-if','If','Spent less than the ticket price, no purchase yet.'),R('p-wait','Wait','Check again tomorrow.'),
-        R('p-if','If','Cost per sale at or below the ticket price.'),R('p-keep','Keep',''),
-        R('p-if','If','Cost per sale $5 to $10 over the ticket price.'),R('p-wait','Wait','Give it one more day. Check return on ad spend too, because VIP upgrades and bumps count.')]},
-      {t:'Day 3',c:'Sales should be showing up by now.',r:[
-        R('p-if','If','Cost per sale at or below the ticket price, or return on ad spend above 1.'),R('p-grow','Scale','Raise the ad set 15%. This is your control ad.'),
-        R('p-note','Test order','Visuals first, then copy, then Advantage+ creative options one at a time, then headlines. Only as many ads as $10 a day each allows.'),
-        R('p-stop','Stop','If every visual and every copy version is well over the ticket price, stop testing. It is a messaging problem.')]},
-      {t:'Day 4 to 10',c:'Budget can go up daily. New test ads every 2 days at most.',r:[
-        R('p-if','If','A test ad beats the control for 2 to 3 days with a positive return.'),R('p-then','Then','It becomes the new control.'),
-        R('p-if','If','A test ad is well over the ticket price with a negative return.'),R('p-off','Turn off',''),
-        R('p-grow','Scale','Winners up 15% a day, never more than 20% in one edit.')]},
-      {t:'Weekend',c:'A new sales ad set launched into a weekend is a gamble.',r:[
-        R('p-wait','Wait','Nothing new or unproven goes live on a Friday or Saturday unless you have no choice.'),
-        R('p-keep','Keep','Only ads that are already selling run through the weekend.'),
-        R('p-if','If','Weekend sales dry up on a tight budget.'),R('p-then','Then','Narrow to your single best ad, or pause until Monday.')]},
-      {t:'Registration closing',c:'Urgency ads go live several days before registration closes.',r:[
-        R('p-then','Copy','Say the deadline plainly. "Doors close Sunday." Only if they really do.'),
-        R('p-keep','Keep','Your best regular ads stay on beside the urgency ads.'),
-        R('p-off','Turn off','Regular ads selling far above the ticket price once the urgency ads are live.'),
-        R('p-note','Know','Urgency ads usually win. When they cost several times your normal cost per sale, turn them off the same day.')]},
-      {t:'Cart open',c:'Now you are selling the main program. This is where a paid launch makes its money back. Hold back <b>5 to 10%</b> of the budget.',r:[
-        R('p-cart','Go live','One hour after the final session or webinar starts.'),
-        R('p-then','Target','Warm audiences stacked in one ad set, with the fresh list upload. Exclude buyers.'),
-        R('p-off','Turn off','An ad that spent more than the program price with no sale, or one far pricier than your best seller once it has 500+ reach.')]},
-      {t:'Cart close',c:'Cart close ads start 2 days before the doors close.',r:[
-        R('p-keep','Keep','Best cart open ads stay on until the cart close ads beat them.'),
-        R('p-stop','Never','Run cart close ads for less than 24 hours.')]}
+      {t:'Before launch',c:"Two to three weeks of registration ads. People pay before they attend, so an earlier start costs you less than it would on a free webinar.",r:[
+        R('p-then','Check',"Purchase event firing on the checkout, and order bump and upsell value counted in the same purchase. Buy a ticket yourself to check."),
+        R('p-then','Set',"Sales objective, purchase event. Budget at the ad set level, at or above the daily floor for your ticket price (see the floors below)."),
+        R('p-then','Know',"The most you can pay per ticket and still profit once the program sales come in. On a paid launch, the first purchase rarely covers the ads."),
+        R('p-then','Load',"Your graphics with the same ad copy and headline on every ad. Only as many ads as $10 a day each allows."),
+        R('p-off','Off',"Text improvements, show spotlights, reveal details over time and site links."),
+        R('p-then','Build now',"Your registration closing ads and your cart ads, so they're ready and scheduled."),
+        R('p-wait','Schedule',"Go live early on a Monday, never on a weekend."),
+        N("Day 1, the day your ads go live.")]},
+      {t:'Day 1',c:"The day your ads go live. No sales on day 1 is normal.",r:[
+        R('p-if','If',"Ads are live with no errors."),R('p-then','Then',"Change nothing."),
+        R('p-if','If',"An ad was rejected."),R('p-then','Then',"Fix it and republish. That's the only reason to touch anything today."),
+        N("Day 2. Compare each ad to your ticket price.")]},
+      {t:'Day 2',c:"One full day of spend. Compare each ad to your <b>ticket price</b>.",r:[
+        R('p-if','If',"Spent more than the ticket price with zero purchases."),R('p-off','Turn off',"Turn it off, as long as another ad in the ad set is still running."),
+        R('p-if','If',"Spent less than the ticket price, no purchase yet."),R('p-wait','Wait',"Check again tomorrow."),
+        R('p-if','If',"Cost per sale at or below the ticket price."),R('p-keep','Keep',""),
+        R('p-if','If',"Cost per sale $5 to $10 over the ticket price."),R('p-wait','Wait',"Give it one more day. Check return on ad spend too, because VIP upgrades and bumps count."),
+        R('p-if','If',"Sales show in your checkout but not in Ads Manager."),R('p-then','Then',"Your tracking is off. Fix it today."),
+        N("Day 3. Your first control ad.")]},
+      {t:'Day 3',c:"Two full days of spend. Sales should be showing up by now.",r:[
+        R('p-if','If',"Cost per sale at or below the ticket price, or return on ad spend above 1."),R('p-grow','Scale',"Raise the ad set 15%. This is your control ad. It stays on, untouched."),
+        R('p-if','If',"Two ads are close on cost per sale."),R('p-then','Then',"The higher link click-through rate wins. Still close, keep both."),
+        R('p-then','Add',"Duplicate the control and change one thing. Only as many ads as $10 a day each allows."),
+        R('p-note','Test order',"Visuals first, then copy, then Advantage+ creative options one at a time, then headlines."),
+        R('p-then','First',"Before you turn an ad off, read its comments. On a paid event people ask about dates, replays and refunds, and an answer can save the ad."),
+        R('p-stop','Stop',"If every visual and every copy version is well over the ticket price, stop testing. It's a messaging problem."),
+        N("Day 5. New test ads every 2 days at most.")]},
+      {t:'Day 5',c:"Four full days. Look at today, yesterday and the two days before for each ad. That's your <b>trend friend</b>.",r:[
+        R('p-if','If',"A test ad beats the control for 2 to 3 days with a positive return."),R('p-then','Then',"It becomes the new control. The old one can stay on if it's still at or under the ticket price."),
+        R('p-if','If',"A test ad is well over the ticket price with a negative return."),R('p-off','Turn off',""),
+        R('p-if','If',"The control is getting more expensive 3 days running."),R('p-then','Then',"Bring in a new graphic on a duplicate. Leave the control on until the new ad beats it."),
+        R('p-grow','Scale',"Winners up 15% a day, never more than 20% in one edit."),
+        R('p-stop','Never',"Turn off the control when you add test ads, and never leave an ad set with zero ads running."),
+        N("Day 8. If the days between land on a weekend, open the Weekend tab.")]},
+      {t:'Day 8',c:"Your second week. Budget can go up daily. New test ads every 2 days at most.",r:[
+        R('p-keep','Keep',"Every ad selling at or under the ticket price. Turn off the clear loser."),
+        R('p-then','Add',"One new test ad at a time, changing whichever thing you've tested least."),
+        R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"Bring in a new graphic."),
+        R('p-if','If',"You want a bigger budget jump than 20%."),R('p-then','Then',"Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-then','Check',"Your registration closing ads and cart ads are built, approved and scheduled."),
+        N("The Registration closing tab, several days before the doors close.")]},
+      {t:'Weekend',c:"A new sales ad set launched into a weekend is a gamble.",r:[
+        R('p-then','Thursday',"Make Friday's decisions today."),
+        R('p-wait','Wait',"Nothing new or unproven goes live on a Friday or Saturday unless you have no choice."),
+        R('p-keep','Keep',"Only ads that are already selling run through the weekend."),
+        R('p-if','If',"Weekend sales dry up on a tight budget."),R('p-then','Then',"Narrow to your single best ad, or pause until Monday.")]},
+      {t:'Registration closing',c:"Urgency ads go live several days before registration closes.",r:[
+        R('p-then','Copy',"Say the deadline plainly. \"Doors close Sunday.\" Only if they really do."),
+        R('p-keep','Keep',"Your best regular ads stay on beside the urgency ads."),
+        R('p-off','Turn off',"Regular ads selling far above the ticket price once the urgency ads are live."),
+        R('p-note','Know',"Urgency ads usually win. When they cost several times your normal cost per sale, turn them off the same day."),
+        R('p-then','Day before',"Export your whole email list, with the ticket buyers inside it, and upload it for your cart ads."),
+        N("The Cart open tab.")]},
+      {t:'Cart open',c:"Now you're selling the main program. This is where a paid launch makes its money back. Hold back <b>5 to 10%</b> of the budget.",r:[
+        R('p-cart','Go live',"One hour after the final session or webinar starts."),
+        R('p-then','Target',"Warm audiences stacked in one ad set, with the fresh list upload and further limit the reach turned on. Exclude program buyers."),
+        R('p-then','Write',"Pull the ads from your sales emails. Reminder, objection, deadline, testimonial."),
+        R('p-wait','Wait',"For 500 people reached before you trust what an ad is doing."),
+        R('p-off','Turn off',"An ad that spent more than the program price with no sale, or one far pricier than your best seller once it has 500+ reach."),
+        N("The Cart close tab, 2 days before the doors close.")]},
+      {t:'Cart close',c:"Cart close ads start 2 days before the doors close.",r:[
+        R('p-keep','Keep',"Best cart open ads stay on until the cart close ads beat them."),
+        R('p-stop','Never',"Run cart close ads for less than 24 hours."),
+        R('p-off','Turn off',"Every launch ad, the moment the cart closes.")]}
     ]}
   };
   var mode='free', idx=0;
