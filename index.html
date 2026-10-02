@@ -99,11 +99,11 @@
   <h2>What changes with your setup</h2>
   <p class="sub">The days above work the same for every setup. What changes is where you compare and where you move money. You can turn an ad on or off, but you can only set a budget on an ad set.</p>
   <div class="card terms">
-    <p><b>One warm ad set.</b> Everything happens inside that one ad set. Follow each day and turn ads off or add them. When you turn an ad off, Meta spreads the budget over the ads still on. There's no other ad set to move money to, so the only budget change is raising this one, up to 15% a day.</p>
+    <p><b>One warm ad set.</b> Everything happens inside that one ad set. Follow each day and turn ads off or add them. When you turn an ad off, Meta spreads the budget over the ads still on. There's no other ad set to move money to, so the only budget change is raising this one, 15% a day or 20% every other day.</p>
     <p><b>Warm plus one cold.</b> Follow each day inside each ad set on its own. An ad that wins with your warm audience may not win with the cold one, and that's normal. From day 5, also compare the two ad sets on cost per registrant. If one is clearly cheaper, lower the pricier ad set 15% and raise the cheaper one 15%.</p>
     <p><b>Two cold ad sets.</b> Same graphics and copy in both. Turn off losing ads inside each ad set based on that ad set's own numbers. Then judge the audiences against each other at the ad set level, and move budget toward the cheaper one 15% at a time.</p>
     <p><b>One cold audience in three ad sets, one ad copy in each.</b> This is the big-budget setup. Each ad set holds one piece of ad copy with all your graphics. Inside each ad set, turn off the graphics that aren't working. If one ad set clearly trails the other two, that ad copy is the weak one. Dial that ad set down 15% and dial a better one up 15%.</p>
-    <p><b>The rule for all four.</b> Never raise one ad set more than 15% in a day. You can lower a budget by any amount.</p>
+    <p><b>The rule for all four.</b> Raise an ad set 15% a day, or 20% every other day, and never more than that. You can lower a budget by any amount.</p>
   </div>
 
   <h2>Pick your registration setup</h2>
@@ -189,7 +189,7 @@
         R('p-stop','Never',"Turn off the winner when you add new ads, and never leave an ad set with zero ads running. Both make Meta start learning again and your cost goes up."),
         R('p-note','Count',"Don't go past the number of ads you started with. Keep the winner, turn off the losers, add two new ones. Every ad still needs about $10 a day."),
         R('p-if','If',"The trend is getting cheaper."),R('p-wait','Wait',"Don't change anything on that ad. Let it keep going."),
-        R('p-if','If',"The trend is steady and under your ceiling."),R('p-grow','Scale',"You can raise that ad set's budget up to 15% a day."),
+        R('p-if','If',"The trend is steady and under your ceiling."),R('p-grow','Scale',"You can raise that ad set's budget 15% a day, or 20% every other day. Pick one, not both."),
         R('p-if','If',"The trend is getting more expensive and it's over your ceiling."),R('p-off','Turn off',"Turn off that ad, as long as another ad in the ad set is still running."),
         R('p-if','If',"An ad gets clicks but few registrants."),R('p-then','Then',"The problem is usually the registration page, not the ad."),
         R('p-if','If',"An ad's link click-through rate is under 1%."),R('p-then','Then',"It needs a new first line before anything else."),
@@ -198,7 +198,7 @@
         R('p-then','Pick',"Same order as day 5. Lowest cost per registrant first. Too close to call, the higher link click-through rate. Still close, keep both."),
         R('p-keep','Keep',"Every ad that's steady and under your ceiling. Turn off the clear loser."),
         R('p-then','Add',"One new ad, not three. Duplicate your best ad and change only the headline, or bring in a graphic you haven't tested. This is the last round of new ads for a two-week launch."),
-        R('p-if','If',"A winner has held steady or gotten cheaper for 3 to 4 days."),R('p-grow','Scale',"Raise that ad set's budget up to 15% a day. Need a bigger jump? Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-if','If',"A winner has held steady or gotten cheaper for 3 to 4 days."),R('p-grow','Scale',"Raise that ad set's budget 15% a day, or 20% every other day. Need a bigger jump? Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
         R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"People are seeing the same ad too often. Bring in a new graphic."),
         R('p-if','If',"One side, warm or cold, is clearly cheaper per registrant."),R('p-then','Then',"Lower the pricier ad set's budget 15% and raise the cheaper one 15%. If warm cost per registrant climbs too high, turn warm off and stay with cold."),
         R('p-if','If',"Your budget can carry another cold ad set (check the setup picker below)."),R('p-then','Then',"Add the next audience in the test order, with your winning ads in it. Monday to Wednesday only."),
@@ -283,14 +283,14 @@
         R('p-if','If',"A test ad beats the control for 2 to 3 days with a positive return."),R('p-then','Then',"It becomes the new control. The old one can stay on if it's still at or under the ticket price."),
         R('p-if','If',"A test ad is well over the ticket price with a negative return."),R('p-off','Turn off',""),
         R('p-if','If',"The control is getting more expensive 3 days running."),R('p-then','Then',"Bring in a new graphic on a duplicate. Leave the control on until the new ad beats it."),
-        R('p-grow','Scale',"Raise the winning ad set up to 15% a day, never more."),
+        R('p-grow','Scale',"Raise the winning ad set 15% a day, or 20% every other day."),
         R('p-stop','Never',"Turn off the control when you add test ads, and never leave an ad set with zero ads running."),
         N("Day 8. If the days between land on a weekend, open the Weekend tab.")]},
       {t:'Day 8',c:"Your second week. Budget can go up daily. New test ads every 2 days at most.",r:[
         R('p-keep','Keep',"Every ad selling at or under the ticket price. Turn off the clear loser."),
         R('p-then','Add',"One new test ad at a time, changing whichever thing you've tested least."),
         R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"Bring in a new graphic."),
-        R('p-if','If',"You want a bigger budget jump than 15%."),R('p-then','Then',"Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-if','If',"You want a bigger budget jump than that."),R('p-then','Then',"Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
         R('p-then','Check',"Your registration closing ads and cart ads are built, approved and scheduled."),
         N("The Registration closing tab, several days before the doors close.")]},
       {t:'Weekend',c:"A new sales ad set launched into a weekend is a gamble.",r:[
