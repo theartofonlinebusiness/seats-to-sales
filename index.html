@@ -96,6 +96,16 @@
   <div class="card panel" id="panel" role="tabpanel"></div>
   <p class="sub" style="margin:12px 0 0;font-size:14px">Days 4, 6, 7, 9, 10, 12 and 13 aren't missing. They're wait days. Leave the ads alone and come back on the next day listed. Day 1 is the day your ads go live, and you check in the morning.</p>
 
+  <h2>What changes with your setup</h2>
+  <p class="sub">The days above work the same for every setup. What changes is where you compare and where you move money. You can turn an ad on or off, but you can only set a budget on an ad set.</p>
+  <div class="card terms">
+    <p><b>One warm ad set.</b> Everything happens inside that one ad set. Follow each day and turn ads off or add them. When you turn an ad off, Meta spreads the budget over the ads still on. There's no other ad set to move money to, so the only budget change is raising this one, up to 15% a day.</p>
+    <p><b>Warm plus one cold.</b> Follow each day inside each ad set on its own. An ad that wins with your warm audience may not win with the cold one, and that's normal. From day 5, also compare the two ad sets on cost per registrant. If one is clearly cheaper, lower the pricier ad set 15% and raise the cheaper one 15%.</p>
+    <p><b>Two cold ad sets.</b> Same graphics and copy in both. Turn off losing ads inside each ad set based on that ad set's own numbers. Then judge the audiences against each other at the ad set level, and move budget toward the cheaper one 15% at a time.</p>
+    <p><b>One cold audience in three ad sets, one ad copy in each.</b> This is the big-budget setup. Each ad set holds one piece of ad copy with all your graphics. Inside each ad set, turn off the graphics that aren't working. If one ad set clearly trails the other two, that ad copy is the weak one. Dial that ad set down 15% and dial a better one up 15%.</p>
+    <p><b>The rule for all four.</b> Never raise one ad set more than 15% in a day. You can lower a budget by any amount.</p>
+  </div>
+
   <h2>Pick your registration setup</h2>
   <p class="sub">Your budget decides how many ad sets you can run. Each ad set needs about 7 registrants a day (about 50 a week) for Meta to learn, and each ad needs about $10 a day, with no more than 6 ads in one ad set.</p>
   <div class="card picker">
@@ -128,6 +138,7 @@
     <p><b>Earnings per registrant.</b> Your total launch sales divided by everyone who registered. This is your right hand.</p>
     <p><b>Your ceiling.</b> Half your earnings per registrant. Above this, an ad is costing you more than it's likely to earn.</p>
     <p><b>Trend friend.</b> Today, yesterday and the two days before. Is the cost getting more expensive, holding steady, or getting cheaper? Act on the trend, never on one day.</p>
+    <p><b>Budget.</b> Spend is set on the ad set, never on a single ad. To move money, change ad set budgets.</p>
     <p><b>Control ad.</b> Your best ad right now. It stays on, untouched, until a new ad beats it for 2 to 3 days.</p>
     <p><b>Warm audiences.</b> Your email list, customer list, website visitors (180 days), leads (180 days), Instagram followers, Facebook followers and video viewers (ThruPlay, 180 days).</p>
   </div>
@@ -140,13 +151,13 @@
   var R=function(p,label,text){return {p:p,l:label,t:text}};
   var N=function(t){return R('p-next','Next',t)};
   var D={
-    free:{hint:'Lead objective, lead event. Judge ads on cost per registrant.',days:[
+    free:{hint:'Lead objective = lead event. Judge ads on cost per registrant.',days:[
       {t:'Before launch',c:"<b>Two weeks out is the default.</b> Go to three weeks if the webinar is new and unproven, or if your email list is under about 1,500 and your warm audiences are small.",r:[
         R('p-then','Know',"Your ceiling, which is half of what each registrant earned you on your last launch. Every keep or turn off decision in this tool compares an ad to that number."),
         R('p-then','Check',"Pixel on the registration page, Conversions API connected, and the lead event firing on the thank-you page. Opt in yourself to check."),
         R('p-then','Build',"Your 7 warm audiences, plus a lookalike of your customer list (or your whole email list if you have fewer than 1,000 buyers)."),
         R('p-then','Create',"5 graphics in 2 sizes (1080 x 1350 and 1080 x 1920), 3 pieces of ad copy and 5 headlines."),
-        R('p-then','Set',"Lead objective with the lead event. Countries where your buyers live, usually the US, Canada, the UK, Australia and New Zealand."),
+        R('p-then','Set',"Lead objective = lead event. Countries where your buyers live, usually the US, Canada, the UK, Australia and New Zealand."),
         R('p-then','Load',"Your graphics with the same ad copy and the same headline on every ad, so the only thing changing is the picture. About $10 a day per ad, and no more than 6 ads in one ad set. The setup picker below gives you the count."),
         R('p-off','Off',"Text improvements, show spotlights, reveal details over time and site links. Music is untested, so it's your call."),
         R('p-then','Build now',"Your cart open and cart close ads. Build and schedule them before registration starts, so you aren't doing it on webinar day."),
@@ -164,7 +175,7 @@
         R('p-stop','Do not',"Compare ads or turn anything off. One day of data can't tell you which graphic wins."),
         N("Day 3. Outliers only.")]},
       {t:'Day 3',c:"The morning after two full days of spend. Your first real read. You're looking for outliers, not picking winners. Plenty of launches have no outlier at all.",r:[
-        R('p-if','If',"One ad costs many times more per registrant than the others, like $50 while the rest sit near $8."),R('p-off','Turn off',"Turn that ad off. It's had two full days and it's taking money from the ads that work."),
+        R('p-if','If',"One ad costs many times more per registrant than the others, like $50 while the rest sit near $8."),R('p-off','Turn off',"Turn that ad off. It's had two full days. Meta will spread the ad set's budget over the ads still running."),
         R('p-if','If',"An ad is getting a lot of the spend and has zero registrants."),R('p-off','Turn off',"Turn that one off too."),
         R('p-if','If',"An ad had one pricey day."),R('p-keep','Keep',"Leave it on. One day isn't a trend."),
         R('p-if','If',"There are no outliers."),R('p-then','Then',"Leave every ad running. That's normal, so don't turn one off just to feel busy."),
@@ -178,7 +189,7 @@
         R('p-stop','Never',"Turn off the winner when you add new ads, and never leave an ad set with zero ads running. Both make Meta start learning again and your cost goes up."),
         R('p-note','Count',"Don't go past the number of ads you started with. Keep the winner, turn off the losers, add two new ones. Every ad still needs about $10 a day."),
         R('p-if','If',"The trend is getting cheaper."),R('p-wait','Wait',"Don't change anything on that ad. Let it keep going."),
-        R('p-if','If',"The trend is steady and under your ceiling."),R('p-grow','Scale',"You can raise that ad set 15% a day, or 20% every other day. Pick one, not both."),
+        R('p-if','If',"The trend is steady and under your ceiling."),R('p-grow','Scale',"You can raise that ad set's budget up to 15% a day."),
         R('p-if','If',"The trend is getting more expensive and it's over your ceiling."),R('p-off','Turn off',"Turn off that ad, as long as another ad in the ad set is still running."),
         R('p-if','If',"An ad gets clicks but few registrants."),R('p-then','Then',"The problem is usually the registration page, not the ad."),
         R('p-if','If',"An ad's link click-through rate is under 1%."),R('p-then','Then',"It needs a new first line before anything else."),
@@ -187,16 +198,16 @@
         R('p-then','Pick',"Same order as day 5. Lowest cost per registrant first. Too close to call, the higher link click-through rate. Still close, keep both."),
         R('p-keep','Keep',"Every ad that's steady and under your ceiling. Turn off the clear loser."),
         R('p-then','Add',"One new ad, not three. Duplicate your best ad and change only the headline, or bring in a graphic you haven't tested. This is the last round of new ads for a two-week launch."),
-        R('p-if','If',"A winner has held steady or gotten cheaper for 3 to 4 days."),R('p-grow','Scale',"Raise that ad set 15% a day, or 20% every other day. Need a bigger jump? Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-if','If',"A winner has held steady or gotten cheaper for 3 to 4 days."),R('p-grow','Scale',"Raise that ad set's budget up to 15% a day. Need a bigger jump? Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
         R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"People are seeing the same ad too often. Bring in a new graphic."),
-        R('p-if','If',"One side, warm or cold, is clearly cheaper per registrant."),R('p-then','Then',"Move money to the cheaper side. If warm cost per registrant climbs too high, turn warm off and stay with cold."),
+        R('p-if','If',"One side, warm or cold, is clearly cheaper per registrant."),R('p-then','Then',"Lower the pricier ad set's budget 15% and raise the cheaper one 15%. If warm cost per registrant climbs too high, turn warm off and stay with cold."),
         R('p-if','If',"Your budget can carry another cold ad set (check the setup picker below)."),R('p-then','Then',"Add the next audience in the test order, with your winning ads in it. Monday to Wednesday only."),
         R('p-stop','Stop point',"If no graphic and no ad copy got you under your ceiling, a new headline won't fix it. That's a message or an audience problem. Narrow to your best ad and save the rest of the budget for the cart."),
         N("Day 11. Three more full days, then you lock things in.")]},
       {t:'Day 11',c:"Your webinar is about three days away. Today you lock in what's working. A new ad started now won't get enough days to prove itself.",r:[
         R('p-if','If',"You have 2 or 3 ads at or under your ceiling."),R('p-keep','Keep',"You're done testing. Leave them running together and let Meta move between them."),
         R('p-if','If',"The headline test from day 8 has the lower cost per registrant."),R('p-keep','Keep',"Keep it and turn off your weakest ad. If it lost, turn it off and go back to what you had."),
-        R('p-if','If',"A winning ad has gotten more expensive two days in a row and it's over your ceiling."),R('p-off','Turn off',"Turn off that one ad and let your next best ad carry the spend. One at a time, so the ad set keeps running."),
+        R('p-if','If',"A winning ad has gotten more expensive two days in a row and it's over your ceiling."),R('p-off','Turn off',"Turn off that one ad. Meta moves the ad set's budget to the ads still on. One at a time, so the ad set keeps running."),
         R('p-stop','Do not',"Add new ads, new ad sets or big budget jumps from here."),
         R('p-then','Check',"Your cart open and cart close ads are built, approved and scheduled, and the buyers audience is set up to exclude."),
         R('p-note','3 weeks?',"If you're running three weeks of ads, use the Day 8 tab again on days 11 and 14, then use this tab on day 18."),
@@ -239,10 +250,10 @@
         R('p-if','If',"The replays aren't turning into sales."),R('p-then','Then',"Stop the replay ads and put that money into your cart open ads."),
         R('p-off','Turn off',"When the cart closes.")]}
     ]},
-    paid:{hint:'Sales objective, purchase event. Your ticket price sets the rules.',days:[
+    paid:{hint:'Sales objective = purchase event. Customer lifecycle strategy = get conversions from all audiences. Performance goal = maximize number of conversions. Your ticket price sets the rules.',days:[
       {t:'Before launch',c:"Two to three weeks of registration ads. People pay before they attend, so an earlier start costs you less than it would on a free webinar.",r:[
         R('p-then','Check',"Purchase event firing on the checkout, and order bump and upsell value counted in the same purchase. Buy a ticket yourself to check."),
-        R('p-then','Set',"Sales objective, purchase event. Budget at the ad set level, at or above the daily floor for your ticket price (see the floors below)."),
+        R('p-then','Set',"Sales objective = purchase event. Customer lifecycle strategy = get conversions from all audiences. Performance goal = maximize number of conversions. Budget at the ad set level, at or above the daily floor for your ticket price (see the floors below)."),
         R('p-then','Know',"The most you can pay per ticket and still profit once the program sales come in. On a paid launch, the first purchase rarely covers the ads."),
         R('p-then','Load',"Your graphics with the same ad copy and headline on every ad. Only as many ads as $10 a day each allows."),
         R('p-off','Off',"Text improvements, show spotlights, reveal details over time and site links."),
@@ -272,14 +283,14 @@
         R('p-if','If',"A test ad beats the control for 2 to 3 days with a positive return."),R('p-then','Then',"It becomes the new control. The old one can stay on if it's still at or under the ticket price."),
         R('p-if','If',"A test ad is well over the ticket price with a negative return."),R('p-off','Turn off',""),
         R('p-if','If',"The control is getting more expensive 3 days running."),R('p-then','Then',"Bring in a new graphic on a duplicate. Leave the control on until the new ad beats it."),
-        R('p-grow','Scale',"Winners up 15% a day, never more than 20% in one edit."),
+        R('p-grow','Scale',"Raise the winning ad set up to 15% a day, never more."),
         R('p-stop','Never',"Turn off the control when you add test ads, and never leave an ad set with zero ads running."),
         N("Day 8. If the days between land on a weekend, open the Weekend tab.")]},
       {t:'Day 8',c:"Your second week. Budget can go up daily. New test ads every 2 days at most.",r:[
         R('p-keep','Keep',"Every ad selling at or under the ticket price. Turn off the clear loser."),
         R('p-then','Add',"One new test ad at a time, changing whichever thing you've tested least."),
         R('p-if','If',"Frequency on a warm ad set goes above 2.5."),R('p-then','Then',"Bring in a new graphic."),
-        R('p-if','If',"You want a bigger budget jump than 20%."),R('p-then','Then',"Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
+        R('p-if','If',"You want a bigger budget jump than 15%."),R('p-then','Then',"Duplicate the ad set at the higher budget and keep the original running until the new one beats it."),
         R('p-then','Check',"Your registration closing ads and cart ads are built, approved and scheduled."),
         N("The Registration closing tab, several days before the doors close.")]},
       {t:'Weekend',c:"A new sales ad set launched into a weekend is a gamble.",r:[
